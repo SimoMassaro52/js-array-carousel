@@ -40,23 +40,74 @@ const textArr = [
 ];
 
 let mainContent = '';
-let thumbs = '';
+
+//Ciclo immagini vetrina
 
 for (let i = 0; i < imgArr.length; i++) {
     mainContent += `
-    <div id="img-${[i+1]}">
+    <div id="img-${[i+1]}" class="position-relative d-none">
         <img src="${imgArr[i]}">
-        <div class="position-relative" id="textbox"><h5 id="title">${titleArr[i]}</h5><span id="description">${textArr[i]}</span></div> 
-    </div>`    
+        <div id="textbox" class="p-3"><h5 id="title">${titleArr[i]}</h5><span id="description">${textArr[i]}</span></div> 
+    </div>
+    `    
 }
 
 document.getElementById('mainbox').innerHTML = mainContent;
 
+let thumbsContent = '';
+
+//Ciclo immagini carosello
+
 for (let i = 0; i < imgArr.length; i++) {
-    thumbs += `
+    if(i == 0){
+        thumbsContent += `
+        <img src="${imgArr[i]}">
+        <div id="freccia-su">
+            <i class="bi bi-arrow-up"></i>
+        </div>    
+        `
+    }else if(i == 4){
+        thumbsContent += `
+        <img src="${imgArr[i]}">
+        <div id="freccia-giu">
+            <i class="bi bi-arrow-down"></i>
+        </div>    
+        `
+    }else{
+    thumbsContent += `
     <img src="${imgArr[i]}">
     `
+    }
 }
 
-document.getElementById('thumbnails').innerHTML = thumbs;
+document.getElementById('thumbnailsbox').innerHTML = thumbsContent;
+
+//Funzione freccette
+
+let prevArrow = document.getElementById('freccia-su');
+let nextArrow = document.getElementById('freccia-giu');
+
+//Mettiamo di default la prima immagine sovrascrivendo l'intero ciclio for definito all'inizio che assume un valore differente, non sparisce.
+
+let x = 1;
+let activated = document.getElementById('img-' + x);
+activated.classList.add('active'); 
+
+//Freccia in su
+
+prevArrow.addEventListener('click', function(){
+    activated.classList.remove('active');
+    x--;      
+    activated = document.getElementById('img-' + x);       
+    activated.classList.add('active'); 
+});
+
+//Freccia in giu
+
+nextArrow.addEventListener('click', function(){
+        activated.classList.remove('active');
+        x++;      
+        activated = document.getElementById('img-' + x);       
+        activated.classList.add('active'); 
+});
 

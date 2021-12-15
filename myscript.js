@@ -93,21 +93,35 @@ let x = 1;
 let activated = document.getElementById('img-' + x);
 activated.classList.add('active'); 
 
-//Freccia in su
+//Freccia in su + loop
 
 prevArrow.addEventListener('click', function(){
-    activated.classList.remove('active');
-    x--;      
-    activated = document.getElementById('img-' + x);       
-    activated.classList.add('active'); 
-});
-
-//Freccia in giu
-
-nextArrow.addEventListener('click', function(){
+    if(x == 1){
+        x = 5;
         activated.classList.remove('active');
-        x++;      
+        activated = document.getElementById('img-' + x);
+        activated.classList.add('active'); 
+    }else{
+        activated.classList.remove('active');
+        x--;      
         activated = document.getElementById('img-' + x);       
         activated.classList.add('active'); 
+    }
+});
+
+//Freccia in giu + loop 
+
+nextArrow.addEventListener('click', function(){
+        if(x == 5){
+            x = 1;  
+            activated.classList.remove('active');
+            activated = document.getElementById('img-' + x);
+            activated.classList.add('active'); 
+        }else{
+            activated.classList.remove('active');
+            x++;      
+            activated = document.getElementById('img-' + x);       
+            activated.classList.add('active'); 
+        }
 });
 

@@ -1,0 +1,23 @@
+
+#mainbox img{
+    height: 100%;
+    width: 100%;
+}
+
+#thumbnails img{
+    height: calc(100% /5);
+    width: 100%;
+}
+
+#textbox{
+    position: absolute;
+    top: 0;
+}
+
+#bigimg{
+    display: none;
+}
+
+.active{
+    display: block;
+}
